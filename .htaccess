@@ -1,0 +1,31 @@
+Options -Indexes 
+
+RewriteEngine On
+
+
+
+RewriteCond %{HTTP_HOST} ^yourdomainname.com [NC]
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([0-9a-zA-Z-_/&]+)$ index.php [QSA]
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*).xml$ sitemap/$1.php 
+
+
+
+
+
+<Files "TODO.md">
+    Deny from all
+</Files>
+<Files ".gitignore">
+    Deny from all
+</Files>
+
